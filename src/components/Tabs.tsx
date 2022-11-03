@@ -7,8 +7,9 @@ import {Image, View, Text} from "react-native";
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
+    // @ts-ignore
     return (
-        <Tab.Navigator tabBarOptions={{ showLabel: false }}   {...{ screenOptions }}>
+        <Tab.Navigator {...{ screenOptions , tabBarOptions  }}>
             <Tab.Screen name="Home" component={HomeScreen} options={{
                 tabBarIcon: ({ color, size }) => (
                      <Image   style={screenOptions.icons}    source={require('../assets/icons/home.png')} />
@@ -27,12 +28,17 @@ function Tabs() {
                     <Image   style={screenOptions.icons}    source={require('../assets/icons/stat.png')} />
                 ),
             }} />
-
-
         </Tab.Navigator>
     );
 }
+const tabBarOptions = {
+    showLabel : false
+}
 const screenOptions = {
+    labelStyle: {
+        showLabel: false,
+    },
+
     tabBarStyle:{
         backgroundColor:'#060606',
         height:70,

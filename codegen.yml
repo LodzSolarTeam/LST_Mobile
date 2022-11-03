@@ -1,0 +1,16 @@
+schema: https://lst-v1.azurewebsites.net//graphql
+#schema: http://localhost:55201/graphql
+overwrite: true
+documents:
+  - './src/graphQL/*.graphql'
+generates:
+  ./src/schema.graphql:
+    plugins:
+      - "@graphql-codegen/schema-ast"
+  ./src/types.ts:
+    config:
+      withHooks: true
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

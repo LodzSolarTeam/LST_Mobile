@@ -7,7 +7,6 @@ import {Image, View, Text} from "react-native";
 const Tab = createBottomTabNavigator();
 
 function Tabs() {
-    // @ts-ignore
     return (
         <Tab.Navigator {...{ screenOptions , tabBarOptions  }}>
             <Tab.Screen name="Home" component={HomeScreen} options={{
@@ -35,6 +34,7 @@ const tabBarOptions = {
     showLabel : false
 }
 const screenOptions = {
+    headerShown: false,
     labelStyle: {
         showLabel: false,
     },

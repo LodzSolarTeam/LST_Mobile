@@ -1,12 +1,11 @@
-import {StyleSheet, View} from "react-native";
+import {StyleProp, StyleSheet, View, ViewStyle} from "react-native";
 import React from "react";
 
-interface TitlesWrapperProps {
-    children: JSX.Element[] | JSX.Element;
-    style: any
+interface ITileProps {
+    style: StyleProp<ViewStyle>
 }
 
-const TileWrapper = (props: TitlesWrapperProps) => {
+const Tile = (props: React.PropsWithChildren<ITileProps>) => {
     return (
         <View style={[wrapper.container, props.style]}>
             {props.children}
@@ -21,10 +20,9 @@ const wrapper = StyleSheet.create({
         backgroundColor: "#3f3f3f",
         borderRadius: 10,
         minHeight: 85,
-        paddingHorizontal: 20,
-        paddingVertical: 20,
+        padding: 20,
         margin: 8
     },
 })
 
-export default TileWrapper;
+export default Tile;

@@ -1,16 +1,16 @@
 import {SafeAreaView, ScrollView, StyleSheet, View} from "react-native";
-import DataTile from "./DataTile";
-import Button from "./Button";
-import EcologicalTile from "./EcologicalTile";
-import ChargingTile from "./ChargingTile";
+import DataTile from "./tiles/DataTile";
+import Button from "../shared/Button";
+import EcologicalTile from "./tiles/EcologicalTile";
+import ChargeManagementWrapper from "./tiles/ChargeManagementWrapper";
 import {useState} from "react";
 
-const Tiles = () => {
+const TileSection = () => {
     const [isCharging, setIsCharging] = useState<boolean>(true);
 
     return (
-        <ScrollView style={style.container}>
-                {isCharging && <ChargingTile/>}
+        <ScrollView style={style.container} stickyHeaderIndices={[240]}>
+                {isCharging && <ChargeManagementWrapper/>}
                 <View style={style.rowContainer}>
                     <Button iconName={"car-light-high"}/>
                     <Button iconName={"bullhorn-variant-outline"}/>
@@ -32,15 +32,10 @@ const style = StyleSheet.create({
     container: {
         width: "100%"
     },
-    wrapper: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center"
-    },
     rowContainer: {
         display: "flex",
         flexDirection: "row"
     }
 })
 
-export default Tiles;
+export default TileSection;

@@ -1,15 +1,15 @@
 import {StyleSheet, Text} from "react-native";
-import TileWrapper from "./TileWrapper";
+import Tile from "../../shared/Tile";
 
-interface TitleProps {
+export interface IDataTileProps {
     value: number;
     unit: string;
     text: string;
 }
 
-const DataTile = (props: TitleProps) => {
+const DataTile = (props: IDataTileProps) => {
     return (
-        <TileWrapper style={{flex: 1}}>
+        <Tile style={{flex: 1}}>
             <Text style={tileStyle.valueStyle}>
                 {props.value + " "}
                 {props.unit}
@@ -17,7 +17,7 @@ const DataTile = (props: TitleProps) => {
             <Text style={tileStyle.textStyle}>
                 {props.text}
             </Text>
-        </TileWrapper>
+        </Tile>
     );
 }
 

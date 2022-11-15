@@ -2,7 +2,7 @@ import React from "react";
 import {StyleSheet, View, Text} from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
-const StatusCharging = () => {
+const StatusChargingTile = () => {
     return (
         <View style={style.container}>
             <Text style={style.text}>Status</Text>
@@ -40,4 +40,4 @@ const style = StyleSheet.create({
     }
 })
 
-export default StatusCharging;
+export default StatusChargingTile;

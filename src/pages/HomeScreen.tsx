@@ -1,31 +1,29 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, Image, SafeAreaView} from 'react-native';
-import {StatusBar} from "expo-status-bar";
-import TileWrapper from "../components/home-screen/TileWrapper";
-import Tiles from "../components/home-screen/Tiles";
+import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import TileSection from "../components/home-screen/TileSection";
 
 
 export function HomeScreen() {
     return (
         <SafeAreaView style={styles.container}>
+            <Text style={styles.baseText}>
+                Welcome,
+                <Text style={styles.innerText}> Eagle Two</Text>
+            </Text>
+            <Text style={styles.batteryPercentageText}>
+                90%
+            </Text>
+            <Image
+                style={styles.batteryPercentageText}
+                source={require('../assets/car.png')}
+            />
+            <View style={styles.marginTop10}>
                 <Text style={styles.baseText}>
-                    Welcome,
-                    <Text style={styles.innerText}> Eagle Two</Text>
+                    Range,
+                    <Text style={styles.innerText}> 450km</Text>
                 </Text>
-                <Text style={styles.batteryPercentageText}>
-                    90%
-                </Text>
-                <Image
-                    style={styles.batteryPercentageText}
-                    source={require('../assets/car.png')}
-                />
-                <View style={styles.marginTop10}>
-                    <Text style={styles.baseText}>
-                        Range,
-                        <Text style={styles.innerText}> 450km</Text>
-                    </Text>
-                </View>
-            <Tiles/>
+            </View>
+            <TileSection/>
         </SafeAreaView>
     );
 }

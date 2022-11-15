@@ -27,8 +27,6 @@ function Tabs() {
                     <Image   style={screenOptions.icons}    source={require('../assets/icons/stat.png')} />
                 ),
             }} />
-
-
         </Tab.Navigator>
     );
 }

@@ -1,12 +1,11 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
-import {StatusBar} from "expo-status-bar";
+import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import TileSection from "../components/home-screen/TileSection";
 
 
-
-export function  HomeScreen() {
+export function HomeScreen() {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.baseText}>
                 Welcome,
                 <Text style={styles.innerText}> Eagle Two</Text>
@@ -19,27 +18,27 @@ export function  HomeScreen() {
                 source={require('../assets/car.png')}
             />
             <View style={styles.marginTop10}>
-            <Text style={styles.baseText}>
-                Range,
-                <Text style={styles.innerText}> 450km</Text>
-            </Text>
+                <Text style={styles.baseText}>
+                    Range,
+                    <Text style={styles.innerText}> 450km</Text>
+                </Text>
             </View>
-            {/*<StatusBar style="auto" />*/}
-        </View>
+            <TileSection/>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop : 56,
+        paddingTop: 56,
         backgroundColor: '#060606',
-        color : 'white',
+        color: 'white',
         alignItems: 'center',
         // justifyContent: 'center',
     },
     baseText: {
-        fontSize : 17,
+        fontSize: 17,
         color: '#FFF',
         fontWeight: "300",
     },
@@ -49,17 +48,17 @@ const styles = StyleSheet.create({
     batteryPercentageText: {
         fontWeight: '600',
         color: '#FFF',
-        marginTop : 26,
-        fontSize : 32
+        marginTop: 26,
+        fontSize: 32
     },
     car: {
-        marginTop : 30,
+        marginTop: 30,
     },
-    range : {
-        marginTop : 30,
+    range: {
+        marginTop: 30,
     },
-    marginTop10 : {
-        marginTop : 40,
+    marginTop10: {
+        marginTop: 40,
     }
 
 });

@@ -3,13 +3,14 @@ import DataTile from "./tiles/DataTile";
 import Button from "../shared/Button";
 import EcologicalTile from "./tiles/EcologicalTile";
 import ChargeManagementWrapper from "./tiles/ChargeManagementWrapper";
-import {useState} from "react";
+import React, {useState} from "react";
+import {CarStatus} from "../carStatus/CarStatus";
 
 const TileSection = () => {
     const [isCharging, setIsCharging] = useState<boolean>(true);
 
     return (
-        <ScrollView style={style.container} stickyHeaderIndices={[240]}>
+            <View style={style.container}>
                 {isCharging && <ChargeManagementWrapper/>}
                 <View style={style.rowContainer}>
                     <Button iconName={"car-light-high"}/>
@@ -24,13 +25,14 @@ const TileSection = () => {
                     <DataTile text={"Temperature inside"} value={22} unit={"°C"}/>
                 </View>
                 <EcologicalTile value={96} unit={"mg"}/>
-        </ScrollView>
+            </View>
     )
 }
 
 const style = StyleSheet.create({
+
     container: {
-        width: "100%"
+        paddingBottom: 40
     },
     rowContainer: {
         display: "flex",

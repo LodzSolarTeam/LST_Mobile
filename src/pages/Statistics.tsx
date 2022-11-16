@@ -8,9 +8,6 @@ export function Statistics() {
     return (
         <View style={styles.container}>
             <ImageBackground source={carCharging} resizeMode="cover" style={styles.image}>
-                {/*<View*/}
-                {/*    style={[styles.box, { backgroundColor: "steelblue" }]}*/}
-                {/*/>*/}
                 <View
                     style={[styles.box]}
                 />
@@ -60,39 +57,3 @@ const styles = StyleSheet.create({
         backgroundColor: "#000000c0"
     }
 });
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         paddingTop : 56,
-//         backgroundColor: '#060606',
-//         color : 'white',
-//         alignItems: 'center',
-//         // justifyContent: 'center',
-//     },
-//     baseText: {
-//         fontSize : 17,
-//         color: '#FFF',
-//         fontWeight: "300",
-//     },
-//     innerText: {
-//         fontWeight: '600'
-//     },
-//     batteryPercentageText: {
-//         fontWeight: '600',
-//         color: '#FFF',
-//         marginTop : 26,
-//         fontSize : 32
-//     },
-//     car: {
-//         marginTop : 30,
-//     },
-//     range : {
-//         marginTop : 30,
-//     },
-//     marginTop10 : {
-//         marginTop : 40,
-//     }
-//
-// });
-

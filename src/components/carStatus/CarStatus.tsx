@@ -8,10 +8,11 @@ const car = {
 }
 
 interface Data {
-    status: number;
+    status: number,
+    batteryPercentage : number
 }
 
-export function  CarStatus(props : Data) {
+export function CarStatus(ICarStatusProps : Data) {
     const [carImg, setCarImg] = useState(car.lightsOn);
     useEffect(() => {
         setCarImg(car.lightsOn)
@@ -23,7 +24,7 @@ export function  CarStatus(props : Data) {
                 <Text style={styles.innerText}> Eagle Two</Text>
             </Text>
             <Text style={styles.batteryPercentageText}>
-                90%
+                {ICarStatusProps.batteryPercentage}%
             </Text>
             <Text style={styles.batteryText}>
                 BATTERY

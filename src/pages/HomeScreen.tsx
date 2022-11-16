@@ -6,7 +6,7 @@ export function  HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <CarStatus status={1}/>
+            <CarStatus status={1} batteryPercentage={90}/>
         </View>
     );
 }

@@ -27,7 +27,7 @@ const ecologicalStyle = StyleSheet.create({
     },
     title: {
         color: "#989ca1",
-        fontSize: 20
+        fontSize: 20,
     },
     text: {
         color: "#989ca1",
@@ -38,10 +38,10 @@ const ecologicalStyle = StyleSheet.create({
     },
     image: {
         opacity: 0.15,
-        margin: -20,
+        margin: -30,
         padding: 20, //fixme test on other devices
         position: "absolute",
-        right: -200
+        right: "-40%"
     }
 })
 

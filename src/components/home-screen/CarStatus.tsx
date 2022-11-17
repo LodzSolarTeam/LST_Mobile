@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Image, StyleSheet, Text, View} from 'react-native';
 
 const car = {
     lightsOn : require("../../assets/carImg/car.png"),
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#060606',
         color : '#FFF',
         alignItems: 'center',
+        paddingBottom: 40
     },
     baseText: {
         fontSize : 17,

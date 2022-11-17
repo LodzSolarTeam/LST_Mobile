@@ -2,31 +2,13 @@ import {StyleSheet, Text, View} from "react-native";
 import Slider, {SliderReferenceType} from '@react-native-community/slider';
 import React, {useState} from "react";
 
-// @ts-ignore
-function findAllMethods(obj, methods = []) {
-    if (!obj) {
-        return [...new Set(methods)];
-    }
-
-    const props = Object.getOwnPropertyNames(obj);
-    // @ts-ignore
-    return findAllMethods(Object.getPrototypeOf(obj), [
-        ...methods,
-        ...props.filter(prop => typeof obj[prop] === 'function'),
-    ]);
-}
-
-const batteryLevelFromCloud = 50;
-
 const BatterySOCLimitTile = () => {
-    const [batteryLevel, setBatteryLevel] = useState<number>(50);
+    const [batteryLevel, setBatteryLevel] = useState<number>(90);
     const [chargingLimit, setChargingLimit] = useState<number>(batteryLevel);
 
-    const changeChargingLimit =
-        (value: number) => {
-            setChargingLimit(value);
-        };
-
+    const changeChargingLimit = (value: number) => {
+        setChargingLimit(value);
+    };
 
     return (
         <View style={style.container}>
@@ -35,7 +17,7 @@ const BatterySOCLimitTile = () => {
                 <Text style={style.text}>{chargingLimit}%</Text>
             </View>
             <Slider
-                onResponderRelease={(event) => {
+                onResponderRelease={() => {
                     if (chargingLimit < batteryLevel) {
                         changeChargingLimit(batteryLevel);
                     }
@@ -46,7 +28,6 @@ const BatterySOCLimitTile = () => {
                 value={chargingLimit}
                 minimumTrackTintColor={chargingLimit < batteryLevel ? "#ccc" : "#00d41f"}
                 onValueChange={changeChargingLimit}
-
             />
         </View>
     )

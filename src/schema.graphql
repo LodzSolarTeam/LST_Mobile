@@ -1,0 +1,486 @@
+"""
+The `@defer` directive may be provided for fragment spreads and inline fragments to inform the executor to delay the execution of the current fragment to indicate deprioritization of the current fragment. A query with `@defer` directive will cause the request to potentially return multiple responses, where non-deferred data is delivered in the initial response and data deferred is delivered in a subsequent response. `@include` and `@skip` take precedence over `@defer`.
+"""
+directive @defer(
+  """Deferred when true."""
+  if: Boolean
+
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this defer directive. This label is intended to give client applications a way to identify to which fragment a deferred result belongs to.
+  """
+  label: String
+) on FRAGMENT_SPREAD | INLINE_FRAGMENT
+
+"""
+The `@stream` directive may be provided for a field of `List` type so that the backend can leverage technology such as asynchronous iterators to provide a partial list in the initial response, and additional list items in subsequent responses. `@include` and `@skip` take precedence over `@stream`.
+"""
+directive @stream(
+  """Streamed when true."""
+  if: Boolean
+
+  """The initial elements that shall be send down to the consumer."""
+  initialCount: Int! = 0
+
+  """
+  If this argument label has a value other than null, it will be passed on to the result of this stream directive. This label is intended to give client applications a way to identify to which fragment a streamed result belongs to.
+  """
+  label: String
+) on FIELD
+
+type Anomaly {
+  anomalyType: AnomalyType!
+  measurementName: String
+  timestamp: DateTime!
+}
+
+enum AnomalyType {
+  CHANGEPOINT
+  SPIKE
+}
+
+type Battery {
+  batteryCells: BatteryCells
+  cellAvgVoltage: Float!
+  cellNumberWithMaxVoltage: UnsignedInt!
+  cellNumberWithMinVoltage: UnsignedInt!
+  cellVoltageMax: Float!
+  cellVoltageMin: Float!
+  chargerEnabled: Boolean!
+  deviationOfVoltageInCells: UnsignedInt!
+  errors: BatteryErrors
+  inputOutputState: UnsignedInt!
+  lMUNumberWithMaxTemperature: UnsignedInt!
+  lMUNumberWithMinTemperature: UnsignedInt!
+  numberOfCellsConnected: UnsignedInt!
+  packCRate: UnsignedInt!
+  packCurrent: Float!
+  packTemperatureMax: Int!
+  packTemperatureMin: Int!
+  packVoltage: UnsignedInt!
+  powerBalance: Float!
+  remainingChargeTime: UnsignedInt!
+  remainingEnergy: UnsignedInt!
+  stateOfCharge: UnsignedInt!
+  stateOfHealth: UnsignedInt!
+  systemState: UnsignedInt!
+  usedEnergy: Float!
+  warnings: BatteryWarnings
+}
+
+type BatteryCells {
+  bat1: CellsGroup
+  bat2: CellsGroup
+  pcb1: CellsGroup
+  pcb2: CellsGroup
+}
+
+type BatteryErrors {
+  bMCUSupplyOverVoltage: Boolean!
+  bMCUSupplyUnderVoltage: Boolean!
+  byte0: Byte!
+  byte1: Byte!
+  byte2: Byte!
+  byte3: Byte!
+  cellEndOfLifeVoltage: Boolean!
+  cellOverTemperature: Boolean!
+  cellOverVoltage: Boolean!
+  cellUnderTemperature: Boolean!
+  cellUnderVoltage: Boolean!
+  cellUnmanaged: Boolean!
+  cellVoltageMisRead: Boolean!
+  chargerNotResponding: Boolean!
+  emergencyStop: Boolean!
+  lMUCommunication: Boolean!
+  lMUOverTemperature: Boolean!
+  lMUUnderTemperature: Boolean!
+  leakDetected: Boolean!
+  leakDetectionFailed: Boolean!
+  mainNegativeContactor: Boolean!
+  mainPositiveContactor: Boolean!
+  midpackContactor: Boolean!
+  overCurrentIn: Boolean!
+  overCurrentOut: Boolean!
+  prechargeContactor: Boolean!
+  prechargeTimeout: Boolean!
+  sUBCommunication: Boolean!
+  shortCircuit: Boolean!
+  temperatureSensorOpenCircuit: Boolean!
+  temperatureSensorShortCircuit: Boolean!
+  voltageDifference: Boolean!
+}
+
+type BatteryWarnings {
+  byte1: Byte!
+  cellResistanceDifference: Boolean!
+  highBMCUSupplyVoltage: Boolean!
+  highCellResistance: Boolean!
+  highCellTemperature: Boolean!
+  highCellVoltage: Boolean!
+  highCurrentIn: Boolean!
+  highCurrentOut: Boolean!
+  highLMUTemperature: Boolean!
+  highPackResistance: Boolean!
+  lMUCommunicationInterfered: Boolean!
+  lowBMCUSupplyVoltage: Boolean!
+  lowCellTemperature: Boolean!
+  lowCellVoltage: Boolean!
+  lowLMUTemperature: Boolean!
+  lowSOC: Boolean!
+  packResistanceDifference: Boolean!
+  sUBCommunicationInterfered: Boolean!
+}
+
+"""
+The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255.
+"""
+scalar Byte
+
+type CanStatus {
+  batteryErrorFrameStatus: Boolean!
+  batteryMainFrameStatus: Boolean!
+  batteryOtherDataFrameStatus: Boolean!
+  batteryRemainingEnergyFrameStatus: Boolean!
+  batteryTemperatureFrameStatus: Boolean!
+  batteryVoltageCellsFrameStatus: Boolean!
+  chargeControllerFrameStatus: Boolean!
+  chargerFrameStatus: Boolean!
+  engineFrameStatus: Boolean!
+  errorFrameStatus: Boolean!
+  lightsFrameStatus: Boolean!
+  mppt1InputFrameStatus: Boolean!
+  mppt1OutputFrameStatus: Boolean!
+  mppt1TemperatureFrameStatus: Boolean!
+  mppt2InputFrameStatus: Boolean!
+  mppt2OutputFrameStatus: Boolean!
+  mppt2TemperatureFrameStatus: Boolean!
+  mppt3InputFrameStatus: Boolean!
+  mppt3OutputFrameStatus: Boolean!
+  mppt3TemperatureFrameStatus: Boolean!
+  mppt4InputFrameStatus: Boolean!
+  mppt4OutputFrameStatus: Boolean!
+  mppt4TemperatureFrameStatus: Boolean!
+  speedFrameStatus: Boolean!
+  sunSensorFrameStatus: Boolean!
+}
+
+type Car {
+  battery: Battery
+  general: General
+  gps: Gps
+  id: String
+  lights: Lights
+  solar: Solar
+  tires: Tires
+}
+
+type CarEvent {
+  eventType: CarEventType!
+  id: String
+  timestamp: DateTime!
+}
+
+input CarEventFilterInput {
+  and: [CarEventFilterInput!]
+  eventType: CarEventTypeOperationFilterInput
+  id: StringOperationFilterInput
+  or: [CarEventFilterInput!]
+  timestamp: ComparableDateTimeOperationFilterInput
+}
+
+input CarEventSortInput {
+  eventType: SortEnumType
+  id: SortEnumType
+  timestamp: SortEnumType
+}
+
+enum CarEventType {
+  CAR_CHARGE_START
+  CAR_CHARGE_STOP
+  CAR_DATA_STREAM_END
+  CAR_DATA_STREAM_START
+}
+
+input CarEventTypeOperationFilterInput {
+  eq: CarEventType
+  in: [CarEventType!]
+  neq: CarEventType
+  nin: [CarEventType!]
+}
+
+input CarFilterInput {
+  and: [CarFilterInput!]
+  general: GeneralFilterInput
+  or: [CarFilterInput!]
+}
+
+enum CarSit {
+  DRIVER
+  NONE
+  PASSENGER_BACK_LEFT
+  PASSENGER_BACK_MIDDLE
+  PASSENGER_BACK_RIGHT
+  PASSENGER_FRONT
+}
+
+input CarSortInput {
+  general: GeneralSortInput
+}
+
+type CellsGroup {
+  temperatures: [Short!]
+  voltages: [Short!]
+}
+
+enum CheckpointStatus {
+  PIT
+  TRACK
+  UNKNOWN
+}
+
+input ComparableDateTimeOperationFilterInput {
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  ngt: DateTime
+  ngte: DateTime
+  nin: [DateTime!]
+  nlt: DateTime
+  nlte: DateTime
+}
+
+input ComparableDoubleOperationFilterInput {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  neq: Float
+  ngt: Float
+  ngte: Float
+  nin: [Float!]
+  nlt: Float
+  nlte: Float
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  neq: Int
+  ngt: Int
+  ngte: Int
+  nin: [Int!]
+  nlt: Int
+  nlte: Int
+}
+
+"""The `DateTime` scalar represents an ISO-8601 compliant date time type."""
+scalar DateTime
+
+type General {
+  batteryError: UnsignedInt!
+  canStatus: CanStatus
+  cruiseDesiredSpeed: UnsignedInt!
+  cruiseEngaged: UnsignedInt!
+  cruiseThrottle: UnsignedInt!
+  driveMode: UnsignedInt!
+  engineError: UnsignedInt!
+  handBrake: UnsignedInt!
+  horn: UnsignedInt!
+  lControllerTemperature: Float!
+  lMotorTemperature: Float!
+  mainSwitch: Boolean!
+  mileage: Float!
+  motorController: UnsignedInt!
+  motorDirection: Boolean!
+  powerEco: Boolean!
+  rControllerTemperature: Float!
+  rMotorTemperature: Float!
+  receivedTime: DateTime!
+  regenerationBrake: UnsignedInt!
+  rpm: UnsignedInt!
+  solarRadiance: UnsignedInt!
+  speed: Float!
+  throttlePosition: UnsignedInt!
+  timestamp: DateTime!
+  totalMileage: Float!
+  unixTimeMilliSeconds: UnsignedLong!
+}
+
+input GeneralFilterInput {
+  and: [GeneralFilterInput!]
+  or: [GeneralFilterInput!]
+  timestamp: ComparableDateTimeOperationFilterInput
+}
+
+input GeneralSortInput {
+  timestamp: SortEnumType
+}
+
+type GeoCoordinate {
+  latitude: Float!
+  longitude: Float!
+}
+
+type Gps {
+  altitude: Float!
+  checkpointIndex: Int!
+  checkpointStatus: CheckpointStatus!
+  latitude: Float!
+  longitude: Float!
+  quality: UnsignedInt!
+  satellitesNumber: UnsignedInt!
+  speedKilometers: Float!
+  speedKnots: Float!
+}
+
+type Lap {
+  durationInSeconds: Float!
+  end: DateTime!
+  id: String
+  maxSpeed: Float!
+  number: Int!
+  powerAvg: Float!
+  powerMpptAvg: Float!
+  powerMpptTotal: Float!
+  speedAvg: Float!
+  start: DateTime!
+  totalEnergy: Float!
+}
+
+input LapFilterInput {
+  and: [LapFilterInput!]
+  durationInSeconds: ComparableDoubleOperationFilterInput
+  end: ComparableDateTimeOperationFilterInput
+  id: StringOperationFilterInput
+  maxSpeed: ComparableDoubleOperationFilterInput
+  number: ComparableInt32OperationFilterInput
+  or: [LapFilterInput!]
+  powerAvg: ComparableDoubleOperationFilterInput
+  powerMpptAvg: ComparableDoubleOperationFilterInput
+  powerMpptTotal: ComparableDoubleOperationFilterInput
+  speedAvg: ComparableDoubleOperationFilterInput
+  start: ComparableDateTimeOperationFilterInput
+  totalEnergy: ComparableDoubleOperationFilterInput
+}
+
+type Lights {
+  emergencyLights: Boolean!
+  highBeamLights: Boolean!
+  interiorLights: Boolean!
+  leftIndicatorLight: Boolean!
+  lowBeamLights: Boolean!
+  parkLights: Boolean!
+  rightIndicatorLight: Boolean!
+  stopLights: Boolean!
+}
+
+type Query {
+  anomaly: [Anomaly]
+  car(dateFrom: String, dateTo: String, order: [CarSortInput!], where: CarFilterInput): [Car]
+  carEvent(order: [CarEventSortInput!], where: CarEventFilterInput): [CarEvent]
+  lap(where: LapFilterInput): [Lap]
+  raceTrackEvent: [RaceTrackEvent]
+  recentCar: RecentCar
+  zolder: [GeoCoordinate]
+}
+
+type RaceTrackEvent {
+  description: String
+  durationInSeconds: Float!
+  endTime: DateTime!
+  id: String
+  maxSpeed: Float!
+  passengers: [RaceTrackPassenger]
+  powerAvg: Float!
+  powerMpptAvg: Float!
+  powerMpptTotal: Float!
+  speedAvg: Float!
+  startTime: DateTime!
+  totalEnergy: Float!
+}
+
+type RaceTrackPassenger {
+  firstName: String
+  lastName: String
+  sitPosiiton: CarSit!
+  weight: Float!
+}
+
+type RecentCar {
+  battery: Battery
+  general: General
+  gps: Gps
+  id: String
+  lights: Lights
+  solar: Solar
+  tires: Tires
+}
+
+type RideSummary {
+  checkpointIndex: Int!
+  powerBalanceAvg: Float!
+  powerBalanceMax: Float!
+  powerBalanceMin: Float!
+  speedAvg: Float!
+  speedMax: Float!
+  speedMin: Float!
+}
+
+"""
+The `Short` scalar type represents non-fractional signed whole 16-bit numeric values. Short can represent values between -(2^15) and 2^15 - 1.
+"""
+scalar Short
+
+type Solar {
+  mpptInputCurrent: [Float!]
+  mpptInputVoltage: [Int!]
+  mpptMosfetTemperature: [Float!]
+  mpptOutputPower: [Int!]
+  mpptOutputVoltage: [Int!]
+  mpptPcbTemperature: [Float!]
+  powerMppt: Int!
+}
+
+enum SortEnumType {
+  ASC
+  DESC
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  contains: String
+  endsWith: String
+  eq: String
+  in: [String]
+  ncontains: String
+  nendsWith: String
+  neq: String
+  nin: [String]
+  nstartsWith: String
+  or: [StringOperationFilterInput!]
+  startsWith: String
+}
+
+type Tires {
+  pressures: [Float!]
+  temperatures: [Int!]
+}
+
+"""
+The UnsignedInt scalar type represents a unsigned 32-bit numeric non-fractional value greater than or equal to 0.
+"""
+scalar UnsignedInt
+
+"""
+The UnsignedLong scalar type represents a unsigned 64-bit numeric non-fractional value greater than or equal to 0.
+"""
+scalar UnsignedLong

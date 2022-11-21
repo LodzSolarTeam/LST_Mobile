@@ -10,20 +10,20 @@ function Tabs() {
     return (
         <Tab.Navigator {...{ screenOptions , tabBarOptions  }}>
             <Tab.Screen name="Home" component={HomeScreen} options={{
-                tabBarIcon: ({ color, size }) => (
+                tabBarIcon: () => (
                      <Image   style={screenOptions.icons}    source={require('../assets/icons/home.png')} />
                 ),
             }} />
 
 
             <Tab.Screen name="Map" component={Map} options={{
-                tabBarIcon: ({ color, size }) => (
+                tabBarIcon: () => (
                     <Image   style={screenOptions.mapIcon}    source={require('../assets/icons/map.png')} />
                 ),
             }} />
 
             <Tab.Screen name="Statistics" component={Statistics}options={{
-                tabBarIcon: ({ color, size }) => (
+                tabBarIcon: () => (
                     <Image   style={screenOptions.icons}    source={require('../assets/icons/stat.png')} />
                 ),
             }} />

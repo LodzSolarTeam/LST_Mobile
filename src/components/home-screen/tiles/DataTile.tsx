@@ -11,7 +11,7 @@ const DataTile = (props: IDataTileProps) => {
     return (
         <Tile style={{flex: 1}}>
             <Text style={tileStyle.valueStyle}>
-                {props.value + " "}
+                {props.value.toFixed(0) + " "}
                 {props.unit}
             </Text>
             <Text style={tileStyle.textStyle}>

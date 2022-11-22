@@ -17,7 +17,7 @@ const useHomeScreenData = () => {
     const [finalResult, setFinalResult] = useState<IHomeScreenData>();
 
     useEffect(() => {
-        let isCancelled = true;
+        let isCancelled = false;
         const lat = data?.recentCar?.gps!.latitude!;
         const lon = data?.recentCar?.gps!.longitude!;
         const APIkey = "5a86d693b18204975cc0160f3587e676";
@@ -28,7 +28,7 @@ const useHomeScreenData = () => {
             method: "get",
             url: url,
         }).then((response) => {
-            if (isCancelled) {
+            if (!isCancelled) {
                 setFinalResult({
                     interiorTemperature: Math.floor(response.data.main.temp) + 5,
                     ambientTemperature: Math.floor(response.data.main.temp),
@@ -41,7 +41,7 @@ const useHomeScreenData = () => {
             }
         })
         return () => {
-            isCancelled = false;
+            isCancelled = true;
         };
     }, [loading])
 

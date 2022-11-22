@@ -14,7 +14,7 @@ const EcologicalTile = (props: EcologicalTileProps) => {
             <ImageBackground source={leaf} imageStyle={ecologicalStyle.image}>
                 <Text style={ecologicalStyle.value}>{props.totalMileage + " "}{props.unit}</Text>
                 <Text style={ecologicalStyle.title}>Saved CO2 emission</Text>
-                <Text style={ecologicalStyle.text}>from last charging</Text>
+                <Text style={ecologicalStyle.text}>from whole lifespan</Text>
             </ImageBackground>
         </Tile>
     )

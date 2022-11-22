@@ -5,10 +5,14 @@ import EcologicalTile from "./tiles/EcologicalTile";
 import ChargeManagementWrapper from "./tiles/ChargeManagementWrapper";
 import React, {useState} from "react";
 
-interface ITileSectionProps {
+export interface ITileSectionProps {
+    interiorTemperature: number;
     ambientTemperature: number;
+    estimatedRange: number;
+    idealRange: number;
     batterySOC: number;
-    totalMileage?: number;
+    CO2saved: number;
+    isHighBeamLights: boolean;
 }
 
 const TileSection = (props: ITileSectionProps) => {
@@ -16,20 +20,20 @@ const TileSection = (props: ITileSectionProps) => {
 
     return (
         <View>
-            {isCharging && <ChargeManagementWrapper/>}
+            {isCharging && <ChargeManagementWrapper batterySOC={props.batterySOC}/>}
             <View style={style.rowContainer}>
                 <Button iconName={"car-light-high"}/>
                 <Button iconName={"bullhorn-variant-outline"}/>
             </View>
             <View style={style.rowContainer}>
-                <DataTile text={"Estimated range"} value={props.batterySOC * 4.5 * 0.87} unit={"km"}/>
-                <DataTile text={"Ideal range"} value={props.batterySOC * 4.5} unit={"km"}/>
+                <DataTile text={"Estimated range"} value={props.estimatedRange} unit={"km"}/>
+                <DataTile text={"Ideal range"} value={props.idealRange} unit={"km"}/>
             </View>
             <View style={style.rowContainer}>
                 <DataTile text={"Temperature outside"} value={props.ambientTemperature} unit={"°C"}/>
-                <DataTile text={"Temperature inside"} value={props.ambientTemperature + 5} unit={"°C"}/>
+                <DataTile text={"Temperature inside"} value={props.interiorTemperature} unit={"°C"}/>
             </View>
-            <EcologicalTile totalMileage={props.totalMileage} unit={"mg"}/>
+            <EcologicalTile totalMileage={props.CO2saved} unit={"mg"}/>
         </View>
     )
 }

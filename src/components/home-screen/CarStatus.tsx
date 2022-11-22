@@ -8,7 +8,7 @@ const car = {
 }
 
 interface ICarStatusProps {
-    status: boolean | undefined, //fixme remove undefined and fix in home screen
+    status: boolean, //fixme remove undefined and fix in home screen
     batteryPercentage: number
 }
 

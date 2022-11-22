@@ -8,12 +8,11 @@ interface EcologicalTileProps {
 
 const EcologicalTile = (props: EcologicalTileProps) => {
     const leaf = require("../../../assets/leaf.png");
-    const CO2saved = props.totalMileage ? (props.totalMileage * 1.6 * 59).toFixed(0) : 0;
 
     return (
         <Tile style={ecologicalStyle.container}>
             <ImageBackground source={leaf} imageStyle={ecologicalStyle.image}>
-                <Text style={ecologicalStyle.value}>{CO2saved + " "}{props.unit}</Text>
+                <Text style={ecologicalStyle.value}>{props.totalMileage + " "}{props.unit}</Text>
                 <Text style={ecologicalStyle.title}>Saved CO2 emission</Text>
                 <Text style={ecologicalStyle.text}>from last charging</Text>
             </ImageBackground>

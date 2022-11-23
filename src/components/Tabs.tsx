@@ -2,8 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeScreen } from "../pages/HomeScreen";
 import { Statistics } from "../pages/Statistics";
 import { Map } from "../pages/Map";
-import { Image, View, Text } from "react-native";
-import Tires from "./Statistics/Tires";
+import { Image } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +58,6 @@ const screenOptions = {
   labelStyle: {
     showLabel: false,
   },
-
   tabBarStyle: {
     backgroundColor: "#060606",
     height: 70,

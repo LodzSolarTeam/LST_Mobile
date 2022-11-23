@@ -1,27 +1,22 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import * as React from "react";
-import Button from "../components/shared/Button";
 import Tires from "../components/Statistics/Tires";
+import Battery from "../components/Statistics/Battery";
+import Swiper from "react-native-swiper";
 
 export function Statistics() {
   return (
-    <View style={styles.container}>
-      <View style={styles.topNavigation}>
-        <Button text="Tires" />
-        <Button text="Batteries" />
+    <Swiper showsButtons={false}>
+      <View style={styles.slide}>
+        <Battery />
       </View>
-      <Tires />
-    </View>
+      <View style={styles.slide}>
+        <Tires />
+      </View>
+    </Swiper>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  topNavigation: {
-    display: "flex",
-    flexDirection: "row",
-    backgroundColor: "#000",
-  },
+  slide: { flex: 1 },
 });

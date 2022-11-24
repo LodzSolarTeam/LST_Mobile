@@ -39,11 +39,14 @@ const useHomeScreenData = () => {
                     isHighBeamLights: data?.recentCar?.lights!.highBeamLights!
                 })
             }
-        })
+        }).catch(() => {
+
+        });
+
         return () => {
             isCancelled = true;
         };
-    }, [loading])
+    }, [loading, data])
 
     return finalResult;
 }

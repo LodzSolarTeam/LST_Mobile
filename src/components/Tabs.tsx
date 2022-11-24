@@ -2,8 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeScreen } from "../pages/HomeScreen";
 import { Statistics } from "../pages/Statistics";
 import { Map } from "../pages/Map";
-import { Image, View, Text } from "react-native";
-import Tires from "./Statistics/Tires";
+import { Image } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +13,7 @@ function Tabs() {
         name="Home"
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <Image
               style={screenOptions.icons}
               source={require("../assets/icons/home.png")}
@@ -27,7 +26,7 @@ function Tabs() {
         name="Map"
         component={Map}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <Image
               style={screenOptions.mapIcon}
               source={require("../assets/icons/map.png")}
@@ -40,7 +39,7 @@ function Tabs() {
         name="Statistics"
         component={Statistics}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <Image
               style={screenOptions.icons}
               source={require("../assets/icons/stat.png")}

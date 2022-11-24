@@ -1,12 +1,12 @@
 import {View} from "react-native";
 import StatusChargingTile from "./charge-managment-tiles/StatusChargingTile";
-import BatterySOCLimitTile from "./charge-managment-tiles/BatterySOCLimitTile";
+import BatterySOCLimitTile, {IBatterySOCLimitProps} from "./charge-managment-tiles/BatterySOCLimitTile";
 
-const ChargeManagementWrapper = () => {
+const ChargeManagementWrapper = (props: IBatterySOCLimitProps) => {
     return (
         <View style={style.statusContainer}>
             <StatusChargingTile/>
-            <BatterySOCLimitTile/>
+            <BatterySOCLimitTile batterySOC={props.batterySOC}/>
         </View>
     )
 }

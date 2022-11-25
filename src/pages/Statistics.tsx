@@ -6,17 +6,9 @@ import Swiper from "react-native-swiper";
 
 export function Statistics() {
   return (
-    <Swiper showsButtons={false}>
-      <View style={styles.slide}>
-        <Battery />
-      </View>
-      <View style={styles.slide}>
-        <Tires />
-      </View>
+    <Swiper showsButtons={true}>
+      <Battery />
+      <Tires />
     </Swiper>
   );
 }
-
-const styles = StyleSheet.create({
-  slide: { flex: 1 },
-});

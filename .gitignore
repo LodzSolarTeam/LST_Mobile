@@ -12,6 +12,7 @@
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
+.expo
 
 # Xcode
 build/

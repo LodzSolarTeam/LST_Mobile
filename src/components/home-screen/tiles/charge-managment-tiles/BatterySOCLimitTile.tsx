@@ -1,10 +1,17 @@
 import {StyleSheet, Text, View} from "react-native";
 import Slider, {SliderReferenceType} from '@react-native-community/slider';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-const BatterySOCLimitTile = () => {
-    const [batteryLevel, setBatteryLevel] = useState<number>(90);
-    const [chargingLimit, setChargingLimit] = useState<number>(batteryLevel);
+export interface IBatterySOCLimitProps {
+    batterySOC: number
+}
+
+const BatterySOCLimitTile = (props: IBatterySOCLimitProps) => {
+    const [chargingLimit, setChargingLimit] = useState<number>(props.batterySOC);
+
+    useEffect(() => {
+        changeChargingLimit(props.batterySOC);
+    }, [props.batterySOC])
 
     const changeChargingLimit = (value: number) => {
         setChargingLimit(value);
@@ -18,15 +25,15 @@ const BatterySOCLimitTile = () => {
             </View>
             <Slider
                 onResponderRelease={() => {
-                    if (chargingLimit < batteryLevel) {
-                        changeChargingLimit(batteryLevel);
+                    if (chargingLimit < props.batterySOC) {
+                        changeChargingLimit(props.batterySOC);
                     }
                 }}
                 maximumValue={100}
                 minimumValue={0}
                 step={1}
                 value={chargingLimit}
-                minimumTrackTintColor={chargingLimit < batteryLevel ? "#ccc" : "#00d41f"}
+                minimumTrackTintColor={chargingLimit < props.batterySOC ? "#ccc" : "#00d41f"}
                 onValueChange={changeChargingLimit}
             />
         </View>

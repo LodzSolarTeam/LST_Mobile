@@ -1,0 +1,20 @@
+query homeScreen {
+    recentCar {
+        battery {
+            stateOfCharge,
+            chargerEnabled,
+            remainingEnergy,
+            stateOfHealth,
+        },
+        lights {
+            highBeamLights
+        },
+        gps {
+            latitude,
+            longitude
+        },
+        general {
+            mileage
+        }
+    }
+}

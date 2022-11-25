@@ -7,16 +7,18 @@ const car = {
     charging : require("../../assets/carImg/charging_car.png"),
 }
 
-interface Data {
-    status: number,
-    batteryPercentage : number
+interface ICarStatusProps {
+    status: boolean;
+    batteryPercentage: number;
 }
 
-export function CarStatus(ICarStatusProps : Data) {
+export function CarStatus(props: ICarStatusProps) {
+
     const [carImg, setCarImg] = useState(car.lightsOn);
     useEffect(() => {
-        setCarImg(car.lightsOn)
-    } , []);
+        setCarImg(props.status ? car.lightsOn : car.lightsOff)
+    }, [props.status]);
+
     return (
         <View style={styles.container}>
             <Text style={styles.baseText}>
@@ -24,7 +26,7 @@ export function CarStatus(ICarStatusProps : Data) {
                 <Text style={styles.innerText}> Eagle Two</Text>
             </Text>
             <Text style={styles.batteryPercentageText}>
-                {ICarStatusProps.batteryPercentage}%
+                {props.batteryPercentage}%
             </Text>
             <Text style={styles.batteryText}>
                 BATTERY
@@ -45,7 +47,6 @@ export function CarStatus(ICarStatusProps : Data) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#060606',
         color : '#FFF',
         alignItems: 'center',

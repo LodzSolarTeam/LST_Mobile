@@ -6,7 +6,7 @@ const Battery = () => {
 
   return (
     <ImageBackground source={battery} resizeMode="cover" style={styles.image}>
-      <View style={[styles.container]}>
+      <View style={[styles.container_top]}>
         <View style={[styles.stat1]}>
           <Text style={styles.parameterTitle}> voltage</Text>
           <Text style={styles.parameterValue}> 1.5 V</Text>
@@ -32,11 +32,6 @@ const Battery = () => {
   );
 };
 const styles = StyleSheet.create({
-  parameterTitle_1: {
-    fontSize: 12,
-    fontWeight: "300",
-    color: "#fff",
-  },
   stat1: {
     position: "absolute",
     top: 110,
@@ -67,8 +62,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     color: "#fff",
   },
-
-  container: {
+  container_top: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -95,7 +89,6 @@ const styles = StyleSheet.create({
     paddingTop: 80,
   },
   image: {
-    flex: 1,
     justifyContent: "center",
     backgroundColor: "black",
   },

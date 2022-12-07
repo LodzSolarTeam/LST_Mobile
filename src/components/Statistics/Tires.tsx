@@ -54,13 +54,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     height: "50%",
-    padding: 40,
+    paddingVertical: 65,
+    paddingHorizontal: 25,
   },
   image: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "black",
-    color: "white",
+    backgroundColor: "#000",
+    color: "#FFF",
   },
 });
 

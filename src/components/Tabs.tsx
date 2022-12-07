@@ -58,7 +58,6 @@ const screenOptions = {
   labelStyle: {
     showLabel: false,
   },
-
   tabBarStyle: {
     backgroundColor: "#060606",
     height: 70,

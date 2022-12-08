@@ -42,6 +42,7 @@ export function Map() {
         map?.current?.getCamera().then((camera: Camera) => {
             camera.center.latitude = data?.recentCar?.gps!.latitude;
             camera.center.longitude = data?.recentCar?.gps!.longitude;
+            camera.zoom = 16;
             map?.current?.animateCamera(camera);
         })
     }
@@ -63,11 +64,11 @@ export function Map() {
                     </Marker>
                 </MapView>
                 <SmallButton iconName={"minus"} onClickAction={onZoomOutPress}
-                             style={{position: "absolute", bottom: 0, right: 10}}/>
+                             style={{position: "absolute", bottom: 10, right: 10}}/>
                 <SmallButton iconName={"plus"} onClickAction={onZoomInPress}
-                             style={{position: "absolute", bottom: 60, right: 10}}/>
+                             style={{position: "absolute", bottom: 70, right: 10}}/>
                 <SmallButton iconName={"image-filter-center-focus-weak"} onClickAction={onCenterPress}
-                             style={{position: "absolute", bottom: 0, left: 10}}/>
+                             style={{position: "absolute", bottom: 10, left: 10}}/>
             </View>
             <View style={styles.buttons}>
                 <Button iconName={"arrow-up"}/>

@@ -500,6 +500,11 @@ export type HomeScreenQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HomeScreenQuery = { __typename?: 'Query', recentCar?: { __typename?: 'RecentCar', battery?: { __typename?: 'Battery', stateOfCharge: any, chargerEnabled: boolean, remainingEnergy: any, stateOfHealth: any } | null, lights?: { __typename?: 'Lights', highBeamLights: boolean } | null, gps?: { __typename?: 'Gps', latitude: number, longitude: number } | null, general?: { __typename?: 'General', mileage: number } | null } | null };
 
+export type MapScreenQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MapScreenQuery = { __typename?: 'Query', recentCar?: { __typename?: 'RecentCar', gps?: { __typename?: 'Gps', latitude: number, longitude: number } | null } | null };
+
 
 export const HomeScreenDocument = gql`
     query homeScreen {
@@ -550,3 +555,40 @@ export function useHomeScreenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type HomeScreenQueryHookResult = ReturnType<typeof useHomeScreenQuery>;
 export type HomeScreenLazyQueryHookResult = ReturnType<typeof useHomeScreenLazyQuery>;
 export type HomeScreenQueryResult = Apollo.QueryResult<HomeScreenQuery, HomeScreenQueryVariables>;
+export const MapScreenDocument = gql`
+    query mapScreen {
+  recentCar {
+    gps {
+      latitude
+      longitude
+    }
+  }
+}
+    `;
+
+/**
+ * __useMapScreenQuery__
+ *
+ * To run a query within a React component, call `useMapScreenQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMapScreenQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMapScreenQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMapScreenQuery(baseOptions?: Apollo.QueryHookOptions<MapScreenQuery, MapScreenQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MapScreenQuery, MapScreenQueryVariables>(MapScreenDocument, options);
+      }
+export function useMapScreenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MapScreenQuery, MapScreenQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MapScreenQuery, MapScreenQueryVariables>(MapScreenDocument, options);
+        }
+export type MapScreenQueryHookResult = ReturnType<typeof useMapScreenQuery>;
+export type MapScreenLazyQueryHookResult = ReturnType<typeof useMapScreenLazyQuery>;
+export type MapScreenQueryResult = Apollo.QueryResult<MapScreenQuery, MapScreenQueryVariables>;

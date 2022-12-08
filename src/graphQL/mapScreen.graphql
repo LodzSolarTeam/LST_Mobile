@@ -1,0 +1,8 @@
+query mapScreen {
+    recentCar {
+        gps {
+            latitude,
+            longitude
+        }
+    }
+}

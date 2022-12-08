@@ -500,6 +500,11 @@ export type HomeScreenQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HomeScreenQuery = { __typename?: 'Query', recentCar?: { __typename?: 'RecentCar', battery?: { __typename?: 'Battery', stateOfCharge: any, chargerEnabled: boolean, remainingEnergy: any, stateOfHealth: any } | null, lights?: { __typename?: 'Lights', highBeamLights: boolean } | null, gps?: { __typename?: 'Gps', latitude: number, longitude: number } | null, general?: { __typename?: 'General', mileage: number } | null } | null };
 
+export type TelemetryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TelemetryQuery = { __typename?: 'Query', recentCar?: { __typename?: 'RecentCar', solar?: { __typename?: 'Solar', mpptOutputPower?: Array<number> | null } | null, tires?: { __typename?: 'Tires', pressures?: Array<number> | null, temperatures?: Array<number> | null } | null } | null };
+
 
 export const HomeScreenDocument = gql`
     query homeScreen {
@@ -550,3 +555,43 @@ export function useHomeScreenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type HomeScreenQueryHookResult = ReturnType<typeof useHomeScreenQuery>;
 export type HomeScreenLazyQueryHookResult = ReturnType<typeof useHomeScreenLazyQuery>;
 export type HomeScreenQueryResult = Apollo.QueryResult<HomeScreenQuery, HomeScreenQueryVariables>;
+export const TelemetryDocument = gql`
+    query telemetry {
+  recentCar {
+    solar {
+      mpptOutputPower
+    }
+    tires {
+      pressures
+      temperatures
+    }
+  }
+}
+    `;
+
+/**
+ * __useTelemetryQuery__
+ *
+ * To run a query within a React component, call `useTelemetryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTelemetryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTelemetryQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTelemetryQuery(baseOptions?: Apollo.QueryHookOptions<TelemetryQuery, TelemetryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TelemetryQuery, TelemetryQueryVariables>(TelemetryDocument, options);
+      }
+export function useTelemetryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TelemetryQuery, TelemetryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TelemetryQuery, TelemetryQueryVariables>(TelemetryDocument, options);
+        }
+export type TelemetryQueryHookResult = ReturnType<typeof useTelemetryQuery>;
+export type TelemetryLazyQueryHookResult = ReturnType<typeof useTelemetryLazyQuery>;
+export type TelemetryQueryResult = Apollo.QueryResult<TelemetryQuery, TelemetryQueryVariables>;

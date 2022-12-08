@@ -1,7 +1,11 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
+export interface ITiresSectionProps {
+  pressures: number[];
+  temperatures: number[];
+}
 
-const Tires = () => {
+const Tires = (props: ITiresSectionProps) => {
   const car = require("../../assets/carImg/car_3.png");
 
   return (
@@ -9,21 +13,31 @@ const Tires = () => {
       <View style={[styles.container]}>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}> 1.5 Bar</Text>
+          <Text style={styles.parameterValue}>{props?.pressures!} bar</Text>
+          <Text style={styles.parameterTitle}> pressure</Text>
+          <Text style={styles.parameterValue}>{props?.pressures[0]!} °C</Text>
         </View>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}> 1.5 Bar</Text>
+          <Text style={styles.parameterValue}>{props?.pressures[1]!} bar</Text>
+          <Text style={styles.parameterTitle}> pressure</Text>
+          <Text style={styles.parameterValue}>{props?.pressures[1]!} °C</Text>
         </View>
       </View>
       <View style={[styles.container]}>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}> 1.5 Bar</Text>
+          <Text style={styles.parameterValue}>{props?.pressures[2]!} bar</Text>
+          <Text style={styles.parameterTitle}> pressure</Text>
+          <Text style={styles.parameterValue}>{props?.pressures[2]!} °C</Text>
         </View>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}> 1.5 Bar</Text>
+          <Text style={styles.parameterValue}>{props?.pressures[3]!} bar</Text>
+          <Text style={styles.parameterTitle}> Temperatures</Text>
+          <Text style={styles.parameterValue}>
+            {props?.temperatures[3]!} °C
+          </Text>
         </View>
       </View>
     </ImageBackground>

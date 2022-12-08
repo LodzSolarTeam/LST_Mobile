@@ -1,0 +1,11 @@
+query telemetry {
+    recentCar {
+        solar {
+            mpptOutputPower
+        },
+        tires {
+            pressures
+            temperatures
+        }
+    }
+}

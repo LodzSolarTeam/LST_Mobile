@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomeScreen } from "../pages/HomeScreen";
-import { Statistics } from "../pages/Statistics";
+import { Telemetry } from "../pages/Telemetry";
 import { Map } from "../pages/Map";
 import { Image } from "react-native";
 
@@ -36,8 +36,8 @@ function Tabs() {
       />
 
       <Tab.Screen
-        name="Statistics"
-        component={Statistics}
+        name="Telemetry"
+        component={Telemetry}
         options={{
           tabBarIcon: () => (
             <Image

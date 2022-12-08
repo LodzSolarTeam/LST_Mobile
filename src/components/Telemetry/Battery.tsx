@@ -1,31 +1,46 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import useTelemetryData from "../../hooks/useTelemetryData";
 
-const Battery = () => {
+export interface IBatterySectionProps {
+  pressures: number[];
+  temperatures: number[];
+}
+
+const Battery = (props: IBatterySectionProps) => {
+  const telemetryData = useTelemetryData();
   const battery = require("../../assets/carImg/batter_panels_2.png");
 
   return (
     <ImageBackground source={battery} resizeMode="cover" style={styles.image}>
       <View style={[styles.container_top]}>
         <View style={[styles.stat1]}>
-          <Text style={styles.parameterTitle}> voltage</Text>
-          <Text style={styles.parameterValue}> 1.5 V</Text>
+          <Text style={styles.parameterTitle}>Power</Text>
+          <Text style={styles.parameterValue}>
+            {telemetryData?.solar?.power[0]!}W
+          </Text>
         </View>
       </View>
       <View style={[styles.container_mid]}>
         <View style={[styles.stat2]}>
-          <Text style={styles.parameterTitle}> voltage</Text>
-          <Text style={styles.parameterValue}> 1.5 V</Text>
+          <Text style={styles.parameterTitle}> Power</Text>
+          <Text style={styles.parameterValue}>
+            {telemetryData?.solar.power[1]!}W
+          </Text>
         </View>
       </View>
       <View style={[styles.container_bottom]}>
         <View style={[styles.stat3]}>
-          <Text style={styles.parameterTitle}> voltage</Text>
-          <Text style={styles.parameterValue}> 1.5 V</Text>
+          <Text style={styles.parameterTitle}> Power</Text>
+          <Text style={styles.parameterValue}>
+            {telemetryData?.solar.power[2]!}W
+          </Text>
         </View>
         <View style={[styles.stat4]}>
-          <Text style={styles.parameterTitle}> voltage</Text>
-          <Text style={styles.parameterValue}> 1.5 V</Text>
+          <Text style={styles.parameterTitle}> Power</Text>
+          <Text style={styles.parameterValue}>
+            {telemetryData?.solar.power[3]!}W
+          </Text>
         </View>
       </View>
     </ImageBackground>

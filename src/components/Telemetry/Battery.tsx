@@ -8,7 +8,6 @@ export interface IBatterySectionProps {
 
 const Battery = (props: IBatterySectionProps) => {
   const battery = require("../../assets/carImg/batter_panels_2.png");
-  console.log("EH", props);
   return (
     <ImageBackground source={battery} resizeMode="cover" style={styles.image}>
       <View style={[styles.container_top]}>

@@ -21,7 +21,7 @@ export const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView onScroll={handleScroll} stickyHeaderIndices={[0]}>
+      <ScrollView onScroll={handleScroll}>
         <CarStatus
           status={homeScreenData?.isHighBeamLights!}
           batteryPercentage={homeScreenData?.batterySOC!}

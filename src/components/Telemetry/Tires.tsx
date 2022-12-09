@@ -13,30 +13,44 @@ const Tires = (props: ITiresSectionProps) => {
       <View style={[styles.container]}>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}>{props?.pressures!} bar</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[0].toFixed(1)!} bar
+          </Text>
           <Text style={styles.parameterTitle}> Temperatures</Text>
-          <Text style={styles.parameterValue}>{props?.pressures[0]!} °C</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[0].toFixed(1)!} °C
+          </Text>
         </View>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}>{props?.pressures[1]!} bar</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[1].toFixed(1)!} bar
+          </Text>
           <Text style={styles.parameterTitle}> Temperatures</Text>
-          <Text style={styles.parameterValue}>{props?.pressures[1]!} °C</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[1].toFixed(1)!} °C
+          </Text>
         </View>
       </View>
       <View style={[styles.container]}>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}>{props?.pressures[2]!} bar</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[2].toFixed(1)!} bar
+          </Text>
           <Text style={styles.parameterTitle}> Temperatures</Text>
-          <Text style={styles.parameterValue}>{props?.pressures[2]!} °C</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[2].toFixed(1)!} °C
+          </Text>
         </View>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
-          <Text style={styles.parameterValue}>{props?.pressures[3]!} bar</Text>
+          <Text style={styles.parameterValue}>
+            {props?.pressures[3].toFixed(1)!} bar
+          </Text>
           <Text style={styles.parameterTitle}> Temperatures</Text>
           <Text style={styles.parameterValue}>
-            {props?.temperatures[3]!} °C
+            {props?.temperatures[3].toFixed(1)!} °C
           </Text>
         </View>
       </View>

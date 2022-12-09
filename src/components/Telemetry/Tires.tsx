@@ -14,13 +14,13 @@ const Tires = (props: ITiresSectionProps) => {
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
           <Text style={styles.parameterValue}>{props?.pressures!} bar</Text>
-          <Text style={styles.parameterTitle}> pressure</Text>
+          <Text style={styles.parameterTitle}> Temperatures</Text>
           <Text style={styles.parameterValue}>{props?.pressures[0]!} °C</Text>
         </View>
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
           <Text style={styles.parameterValue}>{props?.pressures[1]!} bar</Text>
-          <Text style={styles.parameterTitle}> pressure</Text>
+          <Text style={styles.parameterTitle}> Temperatures</Text>
           <Text style={styles.parameterValue}>{props?.pressures[1]!} °C</Text>
         </View>
       </View>
@@ -28,7 +28,7 @@ const Tires = (props: ITiresSectionProps) => {
         <View>
           <Text style={styles.parameterTitle}> pressure</Text>
           <Text style={styles.parameterValue}>{props?.pressures[2]!} bar</Text>
-          <Text style={styles.parameterTitle}> pressure</Text>
+          <Text style={styles.parameterTitle}> Temperatures</Text>
           <Text style={styles.parameterValue}>{props?.pressures[2]!} °C</Text>
         </View>
         <View>

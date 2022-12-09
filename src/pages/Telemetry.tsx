@@ -4,17 +4,20 @@ import Tires from "../components/Telemetry/Tires";
 import Battery from "../components/Telemetry/Battery";
 import Swiper from "react-native-swiper";
 import useTelemetryData from "../hooks/useTelemetryData";
-import useHomeScreenData from "../hooks/useHomeScreenData";
 
 export function Telemetry() {
-  const telemetryData = useTelemetryData();
+  const { finalResult, loading } = useTelemetryData();
   return (
-    <Swiper showsButtons={true}>
-      {/*<Battery />*/}
-      {/*<Tires*/}
-      {/*  pressures={telemetryData}*/}
-      {/*  temperatures={telemetryData?.tires.temperatures!}*/}
-      {/*/>*/}
-    </Swiper>
+    <>
+      {!loading && finalResult != undefined && (
+        <Swiper showsButtons={true} loop={false}>
+          <Battery power={finalResult?.solar?.power!} />
+          <Tires
+            pressures={finalResult?.tires?.pressures!}
+            temperatures={finalResult?.tires?.temperatures!}
+          />
+        </Swiper>
+      )}
+    </>
   );
 }

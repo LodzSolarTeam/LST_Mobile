@@ -16,7 +16,7 @@ const useTelemetryData = () => {
   const [finalResult, setFinalResult] = useState<IVehicleTelemetryData>();
   useEffect(() => {
     let isCancelled = false;
-    if (!isCancelled) {
+    if (!isCancelled && data != undefined) {
       setFinalResult({
         solar: {
           power: data?.recentCar?.solar?.mpptOutputPower!,
@@ -32,7 +32,7 @@ const useTelemetryData = () => {
     };
   }, [loading, data]);
 
-  return finalResult;
+  return { finalResult, loading };
 };
 
 export default useTelemetryData;
